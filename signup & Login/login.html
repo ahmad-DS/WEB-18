@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login page</title>
+</head>
+<body>
+    <form id="form" action="">
+       
+        Enter Email
+        <input id="email" type="text">
+        Password
+        <input id="password" type="text">
+        <input  type="submit">
+    </form>
+</body>
+</html>
+<script>
+    var userData=JSON.parse(localStorage.getItem("userData"));
+    document.querySelector("form").addEventListener("submit",checkData);
+
+    function checkData(){
+        event.preventDefault();
+        email=document.querySelector("#email").value;
+        password=document.querySelector("#password").value;
+
+        var flag=false;
+        for(var i=0;i<userData.length;i++){
+            if(userData[i].email==email && userData[i].password==password){
+                flag=true;
+                break;
+            }
+        }
+        if(flag){
+            alert("login Succesful")
+        }else{
+            alert("your credentials are wrong ");
+            window.location.reload();
+        }
+
+    }
+</script>
